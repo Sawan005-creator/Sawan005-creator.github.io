@@ -1,28 +1,972 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Sawani Dixit | PhD Applicant | B.tech Biotechnology graduate</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sawani Dixit | Computational Bioinformatics</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --bg: #f4f1ec;
+      --dark: #0f0e0c;
+      --accent: #1a3a2e;
+      --accent2: #c8a96e;
+      --text: #2c2b29;
+      --muted: #7a7570;
+      --light: #e8e4dd;
+      --white: #faf9f7;
+    }
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.4rem 4rem;
+      background: rgba(244,241,236,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(0,0,0,0.06);
+    }
+    .nav-logo {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.8rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 0.78rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--accent); }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      padding-top: 80px;
+    }
+    .hero-left {
+      background: var(--accent);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 5rem 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-left::before {
+      content: '';
+      position: absolute;
+      top: -60px; right: -60px;
+      width: 300px; height: 300px;
+      border-radius: 50%;
+      border: 1px solid rgba(200,169,110,0.2);
+    }
+    .hero-left::after {
+      content: '';
+      position: absolute;
+      top: -20px; right: -20px;
+      width: 200px; height: 200px;
+      border-radius: 50%;
+      border: 1px solid rgba(200,169,110,0.15);
+    }
+    .hero-tag {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent2);
+      margin-bottom: 1.5rem;
+    }
+    .hero-name {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(3rem, 5vw, 5rem);
+      font-weight: 900;
+      color: #fff;
+      line-height: 1;
+      margin-bottom: 0.3rem;
+    }
+    .hero-role {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.5rem, 2.5vw, 2.2rem);
+      font-weight: 400;
+      font-style: italic;
+      color: rgba(255,255,255,0.65);
+      margin-bottom: 2.5rem;
+    }
+    .hero-scroll {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      color: rgba(255,255,255,0.4);
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+    .scroll-line {
+      width: 40px;
+      height: 1px;
+      background: rgba(255,255,255,0.3);
+    }
+
+    .hero-right {
+      position: relative;
+      overflow: hidden;
+      background: var(--light);
+    }
+    .hero-right img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      filter: grayscale(20%);
+      transition: transform 6s ease;
+    }
+    .hero-right:hover img { transform: scale(1.03); }
+    .hero-overlay {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 2rem;
+      background: linear-gradient(to top, rgba(15,14,12,0.7), transparent);
+    }
+    .hero-stat {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.7rem;
+      color: rgba(255,255,255,0.7);
+      letter-spacing: 0.1em;
+    }
+
+    /* ── SECTION COMMON ── */
+    section { padding: 7rem 0; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 4rem; }
+    .section-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--accent2);
+      margin-bottom: 1rem;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.2rem, 4vw, 3.5rem);
+      font-weight: 900;
+      line-height: 1.05;
+      margin-bottom: 4rem;
+    }
+
+    /* ── ABOUT ── */
+    #about { background: var(--white); }
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+      align-items: start;
+    }
+    .about-bio {
+      font-size: 1.05rem;
+      line-height: 1.85;
+      color: var(--text);
+    }
+    .about-bio p + p { margin-top: 1.2rem; }
+    .about-right {}
+    .about-stat-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+      margin-bottom: 2px;
+    }
+    .about-stat {
+      background: var(--light);
+      padding: 2rem;
+    }
+    .stat-number {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem;
+      font-weight: 900;
+      color: var(--accent);
+      line-height: 1;
+      margin-bottom: 0.3rem;
+    }
+    .stat-label {
+      font-size: 0.78rem;
+      color: var(--muted);
+      letter-spacing: 0.05em;
+    }
+    .approach-block {
+      background: var(--accent);
+      padding: 2.5rem;
+      margin-top: 2px;
+    }
+    .approach-block h4 {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent2);
+      margin-bottom: 1rem;
+    }
+    .approach-block p {
+      font-size: 0.9rem;
+      line-height: 1.7;
+      color: rgba(255,255,255,0.8);
+    }
+
+    /* ── RESEARCH / EXPERIENCE ── */
+    #research { background: var(--bg); }
+    .research-list { display: flex; flex-direction: column; gap: 0; }
+    .research-item {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      gap: 3rem;
+      padding: 3rem 0;
+      border-top: 1px solid rgba(0,0,0,0.1);
+    }
+    .research-item:last-child { border-bottom: 1px solid rgba(0,0,0,0.1); }
+    .research-meta {}
+    .research-period {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.75rem;
+      color: var(--accent2);
+      letter-spacing: 0.1em;
+      margin-bottom: 0.5rem;
+    }
+    .research-org {
+      font-size: 0.8rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+    .research-content {}
+    .research-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 0.8rem;
+    }
+    .research-desc {
+      font-size: 0.9rem;
+      line-height: 1.75;
+      color: var(--muted);
+      margin-bottom: 1.2rem;
+    }
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .tag {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.3rem 0.8rem;
+      border: 1px solid var(--accent);
+      color: var(--accent);
+    }
+
+    /* ── SKILLS ── */
+    #skills { background: var(--dark); }
+    #skills .section-title { color: #fff; }
+    #skills .section-label { color: var(--accent2); }
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+    }
+    .skill-card {
+      background: rgba(255,255,255,0.04);
+      padding: 2.5rem;
+      border: 1px solid rgba(255,255,255,0.06);
+      transition: background 0.3s;
+    }
+    .skill-card:hover { background: rgba(255,255,255,0.08); }
+    .skill-card-icon {
+      font-size: 1.5rem;
+      margin-bottom: 1.2rem;
+    }
+    .skill-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      color: #fff;
+      margin-bottom: 1rem;
+    }
+    .skill-card ul {
+      list-style: none;
+    }
+    .skill-card ul li {
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.5);
+      padding: 0.3rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      line-height: 1.5;
+    }
+    .skill-card ul li:last-child { border: none; }
+
+    /* ── ACHIEVEMENTS ── */
+    #achievements { background: var(--light); }
+    .achievements-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2px;
+    }
+    .achievement-card {
+      background: var(--white);
+      padding: 2.5rem;
+      display: flex;
+      gap: 1.5rem;
+      align-items: flex-start;
+    }
+    .achievement-number {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem;
+      font-weight: 900;
+      color: var(--accent2);
+      line-height: 1;
+      flex-shrink: 0;
+    }
+    .achievement-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.05rem;
+      margin-bottom: 0.5rem;
+    }
+    .achievement-card p {
+      font-size: 0.83rem;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    /* ── EDUCATION ── */
+    #education { background: var(--white); }
+    .edu-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+      align-items: start;
+    }
+    .edu-intro {
+      font-size: 1.05rem;
+      line-height: 1.85;
+      color: var(--muted);
+    }
+    .edu-list { display: flex; flex-direction: column; gap: 0; }
+    .edu-item {
+      padding: 2rem 0;
+      border-bottom: 1px solid rgba(0,0,0,0.1);
+    }
+    .edu-item:first-child { border-top: 1px solid rgba(0,0,0,0.1); }
+    .edu-degree {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 0.3rem;
+    }
+    .edu-inst {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--accent2);
+      letter-spacing: 0.08em;
+      margin-bottom: 0.4rem;
+    }
+    .edu-detail {
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
+
+    /* ── GOALS ── */
+    #goals {
+      background: var(--accent);
+      padding: 8rem 0;
+    }
+    .goals-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 4rem;
+      text-align: center;
+    }
+    .goals-inner .section-label { text-align: center; }
+    .goals-quote {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.6rem, 3vw, 2.4rem);
+      font-weight: 400;
+      font-style: italic;
+      color: #fff;
+      line-height: 1.55;
+      margin-bottom: 3rem;
+    }
+    .goals-list {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      text-align: left;
+    }
+    .goal-card {
+      background: rgba(255,255,255,0.07);
+      padding: 2rem;
+    }
+    .goal-card h4 {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent2);
+      margin-bottom: 0.8rem;
+    }
+    .goal-card p {
+      font-size: 0.87rem;
+      line-height: 1.7;
+      color: rgba(255,255,255,0.7);
+    }
+
+    /* ── CONTACT / FOOTER ── */
+    #contact { background: var(--dark); padding: 8rem 0 4rem; }
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+      margin-bottom: 6rem;
+    }
+    .contact-left .section-title { color: #fff; }
+    .contact-left p {
+      font-size: 1rem;
+      line-height: 1.8;
+      color: rgba(255,255,255,0.55);
+      margin-bottom: 2.5rem;
+    }
+    .contact-btn {
+      display: inline-block;
+      padding: 1rem 2.5rem;
+      background: var(--accent2);
+      color: var(--dark);
+      font-family: 'Space Mono', monospace;
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+    .contact-btn:hover { opacity: 0.85; }
+    .contact-right { padding-top: 1rem; }
+    .contact-info-item {
+      padding: 1.5rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .contact-info-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent2);
+      margin-bottom: 0.4rem;
+    }
+    .contact-info-value {
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.7);
+    }
+    .contact-info-value a {
+      color: inherit;
+      text-decoration: none;
+    }
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 3rem;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+    .footer-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      color: rgba(255,255,255,0.3);
+    }
+    .footer-copy {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.65rem;
+      color: rgba(255,255,255,0.2);
+      letter-spacing: 0.1em;
+    }
+
+    /* ── PHOTO SECTION ── */
+    #gallery { background: var(--bg); padding: 5rem 0; }
+    .gallery-strip {
+      display: grid;
+      grid-template-columns: 1fr 1.4fr 1fr;
+      gap: 2px;
+      height: 480px;
+    }
+    .gallery-strip img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      filter: grayscale(15%);
+      transition: filter 0.4s, transform 0.5s;
+    }
+    .gallery-strip img:hover {
+      filter: grayscale(0%);
+      transform: scale(1.02);
+    }
+
+    /* ── ANIMATIONS ── */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      nav { padding: 1.2rem 2rem; }
+      .nav-links { display: none; }
+      .hero { grid-template-columns: 1fr; }
+      .hero-left { min-height: 60vh; padding: 3rem 2rem; }
+      .hero-right { min-height: 50vh; }
+      .container { padding: 0 2rem; }
+      .about-grid, .edu-grid, .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .skills-grid { grid-template-columns: 1fr 1fr; }
+      .goals-list { grid-template-columns: 1fr; }
+      .achievements-grid { grid-template-columns: 1fr; }
+      .gallery-strip { grid-template-columns: 1fr 1fr; height: 320px; }
+      .gallery-strip img:last-child { display: none; }
+      .research-item { grid-template-columns: 1fr; gap: 1rem; }
+    }
+  </style>
 </head>
 <body>
-    <h1>Sawani Dixit</h1>
-    <p>PhD Applicant | Molecular Dynamics | Structural Biology</p>
 
-    <h2>About Me</h2>
-    <p>
-        I am interested in computational structural biology, molecular dynamics simulations,
-        and protein conformational analysis.
-    </p>
-
-    <h2>Research Projects</h2>
-    <ul>
-        <li>
-            <a href="https://github.com/YourUsername/tubulin-md-analysis">
-            Tubulin Alpha–Beta Helix Tilt Analysis
-            </a>
-        </li>
+  <!-- NAV -->
+  <nav>
+    <div class="nav-logo">Sawani Dixit</div>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#research">Research</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#achievements">Achievements</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#goals">Goals</a></li>
+      <li><a href="#contact">Contact</a></li>
     </ul>
+  </nav>
 
-    <h2>Contact : 7007837494</h2>
-    <p>Email:sawanidixit23@gmail.com</p>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-left">
+      <div class="hero-tag">Computational Bioinformatic · Structural Biology · Neuro-Biophysics</div>
+      <h1 class="hero-name">Sawani<br/>Dixit</h1>
+      <p class="hero-role">computational biologist | bioinformatics & lab automation innovator</p>
+      <div class="hero-scroll">
+        <div class="scroll-line"></div>
+        <span>Scroll to explore</span>
+      </div>
+    </div>
+    <div class="hero-right">
+      <img src="photos/hero.jpg" alt="Sawani Dixit at Bio Innovation Centre" onerror="this.style.background='#c8a96e33';this.style.minHeight='100%'"/>
+      <div class="hero-overlay">
+        <div class="hero-stat">Bio Innovation Centre, RGCB · Trivandrum, India</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="container">
+      <div class="section-label">About</div>
+      <div class="about-grid">
+        <div class="fade-up">
+          <h2 class="section-title">Bridging biology<br/>with computation</h2>
+          <div class="about-bio">
+            <p>I am Sawani Dixit, a Bachelor of Technology graduate in Biotechnology (2025) from Khwaja Moinuddin Chishti Language University, Lucknow, with a CGPA of 8.29/10. My work sits at the intersection of structural biology, molecular dynamics, and computational drug discovery.</p>
+            <p>With hands-on experience at Rajiv Gandhi Centre for Biotechnology (RGCB), I have developed automated Python pipelines that reduce data processing time by 30%, managed multi-terabyte molecular simulation datasets, and executed multi-omics analyses integrating metabolomics and genomics to identify disease biomarkers.</p>
+            <p>Currently, I serve as a Health Communication Intern at the Indian Council of Medical Research (ICMR), where I translate complex biomedical science into impactful public health narratives — a role that deepens my appreciation for the societal dimension of research.</p>
+          </div>
+        </div>
+        <div class="fade-up">
+          <div class="about-stat-row">
+            <div class="about-stat">
+              <div class="stat-number">30%</div>
+              <div class="stat-label">Workflow efficiency improvement</div>
+            </div>
+            <div class="about-stat">
+              <div class="stat-number">50+</div>
+              <div class="stat-label">Computational datasets managed</div>
+            </div>
+          </div>
+          <div class="about-stat-row">
+            <div class="about-stat">
+              <div class="stat-number">95%</div>
+              <div class="stat-label">Biomarker classification accuracy</div>
+            </div>
+            <div class="about-stat">
+              <div class="stat-number">2</div>
+              <div class="stat-label">Peer-reviewed conference publications</div>
+            </div>
+          </div>
+          <div class="approach-block">
+            <h4>My Approach</h4>
+            <p>I believe reproducibility and rigor are the foundation of meaningful science. Every pipeline I build prioritizes quality control, parallelization, and clear documentation — so that findings can be trusted, extended, and built upon by the broader research community.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section id="gallery">
+    <div class="gallery-strip fade-up">
+      <img src="photos/photo1.jpg" alt="Sawani Dixit" onerror="this.style.background='#1a3a2e22'"/>
+      <img src="photos/hero.jpg" alt="Sawani Dixit at BIC" onerror="this.style.background='#c8a96e22'"/>
+      <img src="photos/photo2.jpg" alt="Sawani Dixit" onerror="this.style.background='#1a3a2e22'"/>
+    </div>
+  </section>
+
+  <!-- RESEARCH EXPERIENCE -->
+  <section id="research">
+    <div class="container">
+      <div class="section-label">Experience</div>
+      <h2 class="section-title">Research &<br/>Professional Work</h2>
+      <div class="research-list">
+
+        <div class="research-item fade-up">
+          <div class="research-meta">
+            <div class="research-period">2025 – Present</div>
+            <div class="research-org">Indian Council of Medical Research (ICMR)<br/>New Delhi, India</div>
+          </div>
+          <div class="research-content">
+            <div class="research-title">Health Communication Intern</div>
+            <div class="research-desc">Translating cutting-edge biomedical research into accessible, evidence-based public health communication. Developing science communication materials, research briefs, and policy-facing content for one of India's premier biomedical research bodies, bridging the gap between laboratory discovery and public health impact.</div>
+            <div class="tags">
+              <span class="tag">Science Communication</span>
+              <span class="tag">Public Health</span>
+              <span class="tag">ICMR</span>
+              <span class="tag">Research Dissemination</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="research-item fade-up">
+          <div class="research-meta">
+            <div class="research-period">Jul – Dec 2025</div>
+            <div class="research-org">Neuroscience Biophysics Lab<br/>Rajiv Gandhi Centre for Biotechnology (RGCB)<br/>Trivandrum</div>
+          </div>
+          <div class="research-content">
+            <div class="research-title">Research Trainee – Computational Biology & Data Analysis</div>
+            <div class="research-desc">Led computational modeling of protein dynamics using GROMACS molecular dynamics simulations on multi-terabyte datasets. Developed automated Python-based analysis pipelines reducing processing time by 30% through parallelization. Implemented comprehensive QC validation frameworks ensuring reproducibility across 50+ computational experiments. Currently preparing a manuscript on structural conformational dynamics in tubulin dimers.</div>
+            <div class="tags">
+              <span class="tag">GROMACS</span>
+              <span class="tag">Molecular Dynamics</span>
+              <span class="tag">Python</span>
+              <span class="tag">HPC</span>
+              <span class="tag">Protein Structure</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="research-item fade-up">
+          <div class="research-meta">
+            <div class="research-period">2024 – 2025</div>
+            <div class="research-org">RGCB / CBMR / Bioverse Technologies<br/>Trivandrum & Lucknow</div>
+          </div>
+          <div class="research-content">
+            <div class="research-title">Bioinformatics Intern – Multi-Omics Data Analysis</div>
+            <div class="research-desc">Executed multi-omics analyses integrating NMR-based metabolomics and genomics data to identify disease biomarkers and biological pathways. Built automated Python/R workflows for preprocessing, statistical analysis, and visualization of high-dimensional biological data. Developed variant annotation pipelines for NGS data using VEP and SnpEff. Achieved 95% classification accuracy in clinical biomarker discovery using OPLS-DA and PCA.</div>
+            <div class="tags">
+              <span class="tag">Multi-Omics</span>
+              <span class="tag">NGS</span>
+              <span class="tag">Metabolomics</span>
+              <span class="tag">VEP / SnpEff</span>
+              <span class="tag">R / Python</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="container">
+      <div class="section-label">Technical Expertise</div>
+      <h2 class="section-title">Skills &<br/>Toolstack</h2>
+      <div class="skills-grid">
+        <div class="skill-card fade-up">
+          <div class="skill-card-icon">🧬</div>
+          <h3>Multi-Omics Analysis</h3>
+          <ul>
+            <li>Genomics: WGS, WES, RNA-seq</li>
+            <li>Metabolomics (NMR / Chenomx)</li>
+            <li>Proteomics concepts</li>
+            <li>Multi-omics data integration</li>
+            <li>Biomarker discovery pipelines</li>
+          </ul>
+        </div>
+        <div class="skill-card fade-up">
+          <div class="skill-card-icon">💻</div>
+          <h3>Programming & Data Science</h3>
+          <ul>
+            <li>Python (NumPy, Pandas, Matplotlib)</li>
+            <li>R (ggplot2, statistical modeling)</li>
+            <li>Bash scripting & workflow automation</li>
+            <li>Git / GitHub</li>
+            <li>Linux / Unix environments</li>
+          </ul>
+        </div>
+        <div class="skill-card fade-up">
+          <div class="skill-card-icon">⚗️</div>
+          <h3>Computational Structural Biology</h3>
+          <ul>
+            <li>GROMACS (MD simulations)</li>
+            <li>PyMOL (structure visualization)</li>
+            <li>Molecular docking</li>
+            <li>Protein dynamics analysis</li>
+            <li>Structure-based drug design</li>
+          </ul>
+        </div>
+        <div class="skill-card fade-up">
+          <div class="skill-card-icon">🔬</div>
+          <h3>Bioinformatics Pipelines</h3>
+          <ul>
+            <li>Nextflow & Snakemake</li>
+            <li>Variant annotation (VEP, SnpEff)</li>
+            <li>NGS data processing & QC</li>
+            <li>Reproducible research frameworks</li>
+          </ul>
+        </div>
+        <div class="skill-card fade-up">
+          <div class="skill-card-icon">📊</div>
+          <h3>Statistics & Machine Learning</h3>
+          <ul>
+            <li>PCA, OPLS-DA, multivariate analysis</li>
+            <li>Clustering algorithms</li>
+            <li>ML basics for biological data</li>
+            <li>Data validation & integrity</li>
+          </ul>
+        </div>
+        <div class="skill-card fade-up">
+          <div class="skill-card-icon">🌐</div>
+          <h3>Research & Communication</h3>
+          <ul>
+            <li>Scientific manuscript writing</li>
+            <li>SOP & technical documentation</li>
+            <li>Health science communication</li>
+            <li>Conference oral presentations</li>
+            <li>NCC Leadership (National Cadet Corps)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ACHIEVEMENTS -->
+  <section id="achievements">
+    <div class="container">
+      <div class="section-label">Recognition</div>
+      <h2 class="section-title">Achievements &<br/>Milestones</h2>
+      <div class="achievements-grid">
+        <div class="achievement-card fade-up">
+          <div class="achievement-number">01</div>
+          <div>
+            <h3>Best Paper Award — ISCRTD 2023</h3>
+            <p>Received the Best Paper Award at the national conference on Sustainable Research & Technological Development for the work titled "Environmental Management & Water Conservation."</p>
+          </div>
+        </div>
+        <div class="achievement-card fade-up">
+          <div class="achievement-number">02</div>
+          <div>
+            <h3>Oral Presentation — QCBPEASGP 2024</h3>
+            <p>Delivered an invited oral presentation on "Smart Cities & Green Buildings" at the national conference, recognized for interdisciplinary research excellence.</p>
+          </div>
+        </div>
+        <div class="achievement-card fade-up">
+          <div class="achievement-number">03</div>
+          <div>
+            <h3>Manuscript in Preparation</h3>
+            <p>"Deciphering structural conformational dynamics in tubulin dimer using molecular dynamics simulation" — a novel contribution to computational structural biology.</p>
+          </div>
+        </div>
+        <div class="achievement-card fade-up">
+          <div class="achievement-number">04</div>
+          <div>
+            <h3>30% Workflow Efficiency Improvement</h3>
+            <p>Designed and deployed parallelized Python pipelines at RGCB that cut bioinformatics data processing time by 30% while maintaining zero data integrity issues across 50+ datasets.</p>
+          </div>
+        </div>
+        <div class="achievement-card fade-up">
+          <div class="achievement-number">05</div>
+          <div>
+            <h3>NPTEL Certification — Computational Neuroscience</h3>
+            <p>Completed the IIT-affiliated NPTEL course in Computational Neuroscience, reinforcing expertise at the intersection of neuroscience, biophysics, and computational modeling.</p>
+          </div>
+        </div>
+        <div class="achievement-card fade-up">
+          <div class="achievement-number">06</div>
+          <div>
+            <h3>NIELIT Certification & NCC Leadership</h3>
+            <p>Certified by NIELIT in Foundation IT, Programming & Applications. Active National Cadet Corps (NCC) member, demonstrating leadership, discipline, and teamwork.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section id="education">
+    <div class="container">
+      <div class="section-label">Education</div>
+      <div class="edu-grid">
+        <div class="fade-up">
+          <h2 class="section-title">Academic<br/>Foundation</h2>
+          <p class="edu-intro">A rigorous academic background spanning biotechnology, computational biology, and bioinformatics — forming the foundation for advanced research in computational life sciences and neuroscience.</p>
+        </div>
+        <div class="edu-list fade-up">
+          <div class="edu-item">
+            <div class="edu-degree">B.Tech in Biotechnology</div>
+            <div class="edu-inst">Khwaja Moinuddin Chishti Language University, Lucknow · 2025</div>
+            <div class="edu-detail">CGPA: 8.29/10 · Relevant coursework: Bioinformatics, Computational Biology, Genomics, Biostatistics, Data Structures</div>
+          </div>
+          <div class="edu-item">
+            <div class="edu-degree">Higher Secondary (Science)</div>
+            <div class="edu-inst">Science Stream · 2021</div>
+            <div class="edu-detail">94% — Distinction in science subjects</div>
+          </div>
+          <div class="edu-item">
+            <div class="edu-degree">Secondary Education</div>
+            <div class="edu-inst">2019</div>
+            <div class="edu-detail">88% — Outstanding academic performance</div>
+          </div>
+          <div class="edu-item">
+            <div class="edu-degree">NPTEL — Computational Neuroscience</div>
+            <div class="edu-inst">IIT-Affiliated Online Course</div>
+            <div class="edu-detail">Certification in computational modeling of neural systems</div>
+          </div>
+          <div class="edu-item">
+            <div class="edu-degree">Workshop — Advanced Computational Methods</div>
+            <div class="edu-inst">Nanomaterials Research</div>
+            <div class="edu-detail">Hands-on training in computational methods and nanomaterials characterization</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GOALS -->
+  <section id="goals">
+    <div class="goals-inner">
+      <div class="section-label">Vision</div>
+      <p class="goals-quote fade-up">"My goal is to advance computational biology and bioinformatics by developing data-driven tools and automated biological systems that translate scientific discoveries into practical solutions for healthcare and life sciences"</p>
+      <div class="goals-list">
+        <div class="goal-card fade-up">
+          <h4>Research Direction</h4>
+          <p>Pursue doctoral research in computational bioinformatics and neurobiophysics — studying protein dynamics, neural molecular mechanisms, and structure-based therapeutic targets using MD simulations and AI-driven analysis.</p>
+        </div>
+        <div class="goal-card fade-up">
+          <h4>Long-Term Impact</h4>
+          <p>Contribute to precision medicine by integrating multi-omics data with structural biology insights — accelerating the discovery of biomarkers and drug candidates for neurological and complex diseases.</p>
+        </div>
+        <div class="goal-card fade-up">
+          <h4>Scientific Community</h4>
+          <p>Build open, reproducible computational frameworks that democratize access to advanced bioinformatics tools, and communicate science effectively to bridge research with real-world health outcomes.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="container">
+      <div class="contact-grid">
+        <div class="contact-left fade-up">
+          <div class="section-label" style="color:var(--accent2)">Get In Touch</div>
+          <h2 class="section-title">Open to PhD<br/>Opportunities</h2>
+          <p>I am actively seeking doctoral positions in computational bioinformatics, structural biology, and neuro-computational biophysics at research universities globally. I bring hands-on experience in molecular dynamics, multi-omics analysis, and bioinformatics pipeline development — along with a strong commitment to reproducible, impactful science.</p>
+          <a href="mailto:sawanidixit23@gmail.com" class="contact-btn">Send an Email</a>
+        </div>
+        <div class="contact-right fade-up">
+          <div class="contact-info-item">
+            <div class="contact-info-label">Email</div>
+            <div class="contact-info-value"><a href="mailto:sawanidixit23@gmail.com">sawanidixit23@gmail.com</a></div>
+          </div>
+          <div class="contact-info-item">
+            <div class="contact-info-label">Phone</div>
+            <div class="contact-info-value">+91 7007837494</div>
+          </div>
+          <div class="contact-info-item">
+            <div class="contact-info-label">LinkedIn</div>
+            <div class="contact-info-value"><a href="https://linkedin.com/in/sawani-dixit-6960022aa" target="_blank">linkedin.com/in/sawani-dixit-6960022aa</a></div>
+          </div>
+          <div class="contact-info-item">
+            <div class="contact-info-label">Location</div>
+            <div class="contact-info-value">Lucknow, India · Open to Relocation Worldwide</div>
+          </div>
+          <div class="contact-info-item">
+            <div class="contact-info-label">Availability</div>
+            <div class="contact-info-value">Immediate (within 1–2 weeks) · Open to full-time PhD positions</div>
+          </div>
+          <div class="contact-info-item">
+            <div class="contact-info-label">Work Authorization</div>
+            <div class="contact-info-value">Indian Citizen · Open to international opportunities</div>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-name">Sawani Dixit</div>
+        <div class="footer-copy">© 2025 · Built for academic applications</div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    // Fade-up on scroll
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+    // Nav active state
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-links a');
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(s => {
+        if (window.scrollY >= s.offsetTop - 120) current = s.getAttribute('id');
+      });
+      navLinks.forEach(a => {
+        a.style.color = a.getAttribute('href') === '#' + current ? 'var(--accent)' : '';
+      });
+    });
+  </script>
 </body>
 </html>
